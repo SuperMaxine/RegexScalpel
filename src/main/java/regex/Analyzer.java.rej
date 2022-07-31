@@ -1,0 +1,12 @@
+diff a/src/regex/Analyzer.java b/src/regex/Analyzer.java	(rejected hunks)
+@@ -213,8 +213,8 @@
+                         synchronized (countingPrePaths) {
+                             // System.out.println("----------------------------------------------------------\nnode regex: " + node.SelfRegex + "\npumpPaths:\n" + printPaths(node.getRealPaths(), false) + "\n");
+                             if (debugStuck) System.out.println("node: " + node.id + ",regex:" + node.SelfRegex);
+-                            for (int i = 0 ; i < node.getRealPaths().size() && !Thread.currentThread().isInterrupted(); i++) {
+-                                for (int j = i + 1; j < node.getRealPaths().size() && !Thread.currentThread().isInterrupted(); j++) {
++                            for (int i = 0 ; i < node.getRealPaths().size() && !Thread.currentThread().isInterrupted(); i++) {
++                                for (int j = i + 1; j < node.getRealPaths().size() && !Thread.currentThread().isInterrupted(); j++) {
+                                     Vector<Set<Integer>> pumpPath = getPathCompletelyOverLap(node.getRealPaths().get(i), node.getRealPaths().get(j));
+                                     if(pumpPath.size() != 0) {
+                                         if (countingPrePaths.get(node) == null) {
