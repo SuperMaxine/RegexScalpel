@@ -8,6 +8,7 @@ import regex.Pattern;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class SingleTester {
@@ -24,7 +25,7 @@ public class SingleTester {
         System.out.println(dateFormat.format(date));
         System.out.println("-----------------------------------------------------");
         do {
-            Vector<Pair<String, RepairType>> result = Analysis.Analysis(regex, count);
+            Vector<Pair<String, RepairType>> result = Analysis.Analysis(regex);
             if (result.size() == 0) {
                 break;
             }
@@ -35,6 +36,63 @@ public class SingleTester {
 
             // // 始终挑选第一个
             // regex_repaired = result.get(0).getKey();
+
+            System.out.println("repaired: "+regex_repaired + "\n");
+            regex = regex_repaired;
+            count++;
+        } while (!regex_repaired.equals("") && count < 10);
+
+        System.out.println("final regex: "+regex);
+
+        return regex;
+    }
+
+    public static String Test(boolean auto, String regex) {
+        String regex_repaired = "";
+        int count = 0;
+        System.out.println("-----------------------------------------------------");
+        System.out.println("regex: " + regex);
+        // print date and time
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        System.out.println("-----------------------------------------------------");
+        do {
+            Vector<Pair<String, RepairType>> result = Analysis.Analysis(regex);
+            if (result.size() == 0) {
+                break;
+            }
+
+            if (auto) {
+                // 从result中随机选择一个作为regex_repaired
+                int index = (int) (Math.random() * result.size());
+                regex_repaired = result.get(index).getKey();
+            }
+            else {
+                // 要求用户手动选择
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Repair result: ");
+                for (int i = 0; i < result.size(); i++) {
+                    System.out.println(i + ": " + result.get(i).getKey());
+                }
+                System.out.println("-----------------------------------------------------");
+                System.out.println("Please select one of the above result: ");
+                int index = 0;
+                // 读取用户输入，并判断是否在范围内，如果不在范围内，则重新读取
+                while (true) {
+                    try {
+                        // get index using Scanner
+                        Scanner scanner = new Scanner(System.in);
+                        index = scanner.nextInt();
+                        if (index >= 0 && index < result.size()) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Please input a number between 0 and " + (result.size() - 1));
+                    }
+                }
+                regex_repaired = result.get(index).getKey();
+            }
 
             System.out.println("repaired: "+regex_repaired + "\n");
             regex = regex_repaired;
@@ -140,7 +198,7 @@ public class SingleTester {
         String regex_repaired = "";
         int count = 0;
         do {
-            Vector<Pair<String, RepairType>> result = Analysis.Analysis(regex, count);
+            Vector<Pair<String, RepairType>> result = Analysis.Analysis(regex);
             if (result.size() == 0) {
                 break;
             }

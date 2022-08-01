@@ -16,7 +16,7 @@ public class Analysis {
     private static boolean debugStep = false;
     static int maxPathLength = 10;
 
-    public static Vector<Pair<String, RepairType>> Analysis(String regex, int repairTime) {
+    public static Vector<Pair<String, RepairType>> Analysis(String regex) {
         Vector<Pair<String, RepairType>> result = new Vector<>();
 
         Tree tree = null;

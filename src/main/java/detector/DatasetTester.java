@@ -86,7 +86,7 @@ public class DatasetTester {
                         do {
                             Vector<Pair<String, RepairType>> result = null;
                             try {
-                                result = Analysis.Analysis(regex, count);
+                                result = Analysis.Analysis(regex);
                             }
                             catch (Exception e) {
                                 e.printStackTrace();
@@ -185,7 +185,7 @@ public class DatasetTester {
                         do {
                             Vector<Pair<String, RepairType>> result = null;
                             try {
-                                result = Analysis.Analysis(regex, count);
+                                result = Analysis.Analysis(regex);
                             }
                             catch (Exception e) {
                                 e.printStackTrace();
