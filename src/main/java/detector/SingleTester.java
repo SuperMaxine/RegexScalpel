@@ -47,6 +47,14 @@ public class SingleTester {
         return regex;
     }
 
+    public static String Test_Interactively(String regex) {
+        return Test(false, regex);
+    }
+
+    public static String Test_Automatically(String regex) {
+        return Test(true, regex);
+    }
+
     public static String Test(boolean auto, String regex) {
         String regex_repaired = "";
         int count = 0;
