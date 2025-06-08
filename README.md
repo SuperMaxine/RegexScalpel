@@ -43,6 +43,10 @@ DatasetTester.Test("data/input/CVE415-SOLA-DA.txt", "data/output/CVE415-SOLA-DA.
 The first parameter is the path of the input dataset. The example shown is the dataset from the paper. If you have provided your own dataset for testing, please change the path of the first parameter to your dataset file.
 The second parameter is the path of the output dataset. If you wish to change the output path and the output file name, please change the second parameter.
 
+## JDK Env
+
+RegexScalpel can be built on `jdk/8u191-b12` using `mvn package`. Note that many jdk 8 versions don't contain package `javafx.util` (jfxrt.jar, [ref](https://github.com/adoptium/temurin-build/issues/577)), which is a dependency of our tool. Here is [one of the place](https://repo.huaweicloud.com/java/jdk/8u191-b12/) you can find the jdk package.
+
 # More Information
 
 To see more experimental statistics from our paper, please check the following [links](https://sites.google.com/view/regexscalpel/abstract)
